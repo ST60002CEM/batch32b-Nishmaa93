@@ -65,8 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {},
                           child: Text('Login'),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Color.fromARGB(255, 29, 191, 115),
+                              backgroundColor: Colors.brown,
                               textStyle: TextStyle(color: Colors.white))))
                 ],
               ),
