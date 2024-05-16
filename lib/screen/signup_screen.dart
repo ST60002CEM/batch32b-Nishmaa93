@@ -42,7 +42,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: _nameController,
               decoration: InputDecoration(
                 hintText: 'Name',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(width: 4.0),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 prefixIcon: Icon(Icons.person),
               ),
             ),
@@ -51,7 +54,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: _emailController,
               decoration: InputDecoration(
                 hintText: 'Email',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(width: 4.0),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 prefixIcon: Icon(Icons.email),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -61,7 +67,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: _passwordController,
               decoration: InputDecoration(
                 hintText: 'Password',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(width: 4.0),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 prefixIcon: Icon(Icons.lock),
               ),
               obscureText: true,
@@ -71,7 +80,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: _confirmPasswordController,
               decoration: InputDecoration(
                 hintText: 'Confirm Password',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(width: 4.0),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 prefixIcon: Icon(Icons.lock_outline),
               ),
               obscureText: true,
