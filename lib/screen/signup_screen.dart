@@ -41,9 +41,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
-                hintText: 'Name',
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber)),
+                fillColor: Colors.amber,
+                labelText: 'Name',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
                 border: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 4.0),
+                  borderSide: const BorderSide(
+                      width: 4.0,
+                      strokeAlign: BorderSide.strokeAlignCenter,
+                      style: BorderStyle.solid,
+                      color: Colors.black),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 prefixIcon: Icon(Icons.person),
@@ -53,9 +63,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
-                hintText: 'Email',
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber)),
+                fillColor: Colors.amber,
+                labelText: 'Email',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
                 border: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 4.0),
+                  // gapPadding: Checkbox.width,
+                  borderSide: const BorderSide(
+                    width: 4.0,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                    color: Colors.black,
+                    style: BorderStyle.solid,
+                  ),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 prefixIcon: Icon(Icons.email),
@@ -66,9 +88,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
             TextField(
               controller: _passwordController,
               decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber)),
+                fillColor: Colors.amber,
                 hintText: 'Password',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
                 border: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 4.0),
+                  borderSide: const BorderSide(
+                    width: 4.0,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                    color: Colors.black,
+                    style: BorderStyle.solid,
+                  ),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 prefixIcon: Icon(Icons.lock),
@@ -79,9 +112,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
             TextField(
               controller: _confirmPasswordController,
               decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber)),
+                fillColor: Colors.amber,
                 hintText: 'Confirm Password',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
                 border: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 4.0),
+                  borderSide: const BorderSide(
+                    width: 4.0,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                    color: Colors.black,
+                    style: BorderStyle.solid,
+                  ),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 prefixIcon: Icon(Icons.lock_outline),
