@@ -18,9 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           // Add Image widget here
           Image.asset(
-            'assets/images/kam.png',
-            height: 200, // adjust height as needed
+            'assets/images/kam.png', // replace with your image path
+            height: 150, // adjust height as needed
           ),
+
           Padding(
             padding: const EdgeInsets.all(30),
             child: Form(
@@ -59,17 +60,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30,
                   ),
                   SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('Login'),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.brown,
-                              textStyle: TextStyle(color: Colors.white))))
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Login'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.brown,
+                        textStyle: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  // Add "Need an Account? Sign up" button here
+                  TextButton(
+                    onPressed: () {
+                      // Handle sign up action
+                    },
+                    child: Text(
+                      'Need an Account? Sign up',
+                      style: TextStyle(color: Colors.brown),
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

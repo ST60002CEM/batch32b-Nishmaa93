@@ -1,12 +1,19 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.expand(
-      child: Text('Home Screen'),
+    return Center(
+      child: Text(
+        'Welcome to Dashboard!!!',
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown, // Set the text color to brown
+        ),
+      ),
     );
   }
 }
