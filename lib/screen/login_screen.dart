@@ -16,10 +16,10 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            'KaamKuro',
-            style: TextStyle(
-                fontSize: 35, color: Colors.brown, fontWeight: FontWeight.bold),
+          // Add Image widget here
+          Image.asset(
+            'assets/images/kam.png',
+            height: 200, // adjust height as needed
           ),
           Padding(
             padding: const EdgeInsets.all(30),
