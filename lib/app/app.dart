@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../screen/dashboard_screen.dart';
 import '../screen/login_screen.dart';
 import '../screen/signup_screen.dart';
 import '../screen/splash_screen.dart';
@@ -14,7 +15,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: DashboardScreen(),
     );
   }
 }
