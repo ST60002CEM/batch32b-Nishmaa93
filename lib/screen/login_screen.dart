@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kaamkuro/screen/signup_screen.dart';
 
+import 'dashboard_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -63,7 +65,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => DashboardScreen()),
+                        );
+                      },
                       child: Text('Login'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.brown,

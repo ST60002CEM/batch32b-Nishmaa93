@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard Screen'),
+        title: const Text('Kaam Kuro'),
         backgroundColor: Colors.brown,
       ),
       body: lstBottomScreen[_selectedIndex],

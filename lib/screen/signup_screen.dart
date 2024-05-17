@@ -137,6 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: _register,
                 child: Text('Sign Up'),
                 style: ElevatedButton.styleFrom(
+                  
                     backgroundColor: Colors.brown,
                     textStyle: TextStyle(color: Colors.white))),
             SizedBox(height: 10),
