@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kaamkuro/screen/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -73,15 +74,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  // Add "Need an Account? Sign up" button here
-                  TextButton(
-                    onPressed: () {
-                      // Handle sign up action
-                    },
-                    child: Text(
-                      'Need an Account? Sign up',
-                      style: TextStyle(color: Colors.brown),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Already have an account?'),
+                      TextButton(
+                        onPressed: () {
+                          // Add your navigation logic here, e.g., navigate to login screen
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SignUpScreen()));
+                        },
+                        child: Text('Sign Up'),
+                      ),
+                    ],
                   ),
                 ],
               ),
