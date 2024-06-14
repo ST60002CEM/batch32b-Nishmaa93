@@ -72,7 +72,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
                         //   MaterialPageRoute(builder: (_) => DashboardScreen()),
                         // );
                       },
-                      child: Text('Login'),
+                      child:
+                          Text('Login', style: TextStyle(color: Colors.white)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.brown,
                         textStyle: TextStyle(color: Colors.white),

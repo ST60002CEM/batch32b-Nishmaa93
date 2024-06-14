@@ -4,6 +4,7 @@ import 'package:kaamkuro/app/navigator_key/navigator_key.dart';
 import 'package:kaamkuro/app/themes/app_theme.dart';
 import 'package:kaamkuro/features/splash/presentation/view/splash_view.dart';
 
+
 class App extends ConsumerWidget {
   const App({super.key});
 

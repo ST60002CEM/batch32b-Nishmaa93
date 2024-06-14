@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/app.dart';
+import 'package:kaamkuro/core/networking/local/hive_service.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp (const ProviderScope(child: App()));
+  await HiveService().init();
+  runApp(const ProviderScope(child: App()));
 }
