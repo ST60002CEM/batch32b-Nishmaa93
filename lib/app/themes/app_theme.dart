@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kaamkuro/app/constants/theme_constant.dart';
 
-
 class AppTheme {
   AppTheme._();
 

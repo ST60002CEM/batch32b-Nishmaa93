@@ -5,7 +5,6 @@ import 'package:kaamkuro/app/navigator/navigator.dart';
 import 'package:kaamkuro/features/authentication/presentation/view/register_view.dart';
 import 'package:kaamkuro/screen/signup_screen.dart';
 
-
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
 
