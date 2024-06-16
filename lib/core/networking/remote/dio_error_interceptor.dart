@@ -20,14 +20,14 @@ class DioErrorInterceptor extends Interceptor {
           type: err.type,
         );
       }
-  //   } else {
-  //     // Handle connection errors
-  //     err = DioException(
-  //       requestOptions: err.requestOptions,
-  //       error: 'Connection error',
-  //       type: err.type,
-  //     );
-  //   }
-  //   super.onError(err, handler);
-  // }
+    } else {
+      // Handle connection errors
+      err = DioException(
+        requestOptions: err.requestOptions,
+        error: 'Connection error',
+        type: err.type,
+      );
+    }
+    super.onError(err, handler);
+  }
 }
