@@ -83,19 +83,19 @@ class _LoginViewState extends ConsumerState<LoginView> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Already have an account?'),
-                      TextButton(
-                        onPressed: () {
-                          // Add your navigation logic here, e.g., navigate to login screen
-                          NavigateRoute.pushRoute(const RegisterView());
-                        },
-                        child: Text('Sign Up'),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text('Already have an account?'),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         // Add your navigation logic here, e.g., navigate to login screen
+                  //         NavigateRoute.pushRoute(const RegisterView());
+                  //       },
+                  //       child: Text('Sign Up'),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
