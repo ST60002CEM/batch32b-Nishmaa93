@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/navigator/navigator.dart';
+import 'package:kaamkuro/features/authentication/domain/entity/auth_entity.dart';
 import 'package:kaamkuro/features/authentication/presentation/view/login_view.dart';
+import 'package:kaamkuro/features/authentication/presentation/viewmodel/auth_view_model.dart';
 
-
-class RegisterView extends StatefulWidget {
+class RegisterView extends ConsumerStatefulWidget {
   const RegisterView({super.key});
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  ConsumerState<RegisterView> createState() => _RegisterViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
-
+class _RegisterViewState extends ConsumerState<RegisterView> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
-  void _register() {
+  void _register() async {
     // Here you should add your registration logic
-    print('Name: ${_nameController.text}');
-    print('Email: ${_emailController.text}');
-    print('Password: ${_passwordController.text}');
-    print('Confirm Password: ${_confirmPasswordController.text}');
+    var student = AuthEntity(
+      name: _nameController.text,
+      image: ref.read(authViewModelProvider).imageName ?? '',
+      phone: _phoneController.text,
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+
+    ref.read(authViewModelProvider.notifier).register(student);
   }
 
   void _loginWithGoogle() {
@@ -90,6 +96,31 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             SizedBox(height: 20),
             TextField(
+              controller: _phoneController,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber)),
+                fillColor: Colors.amber,
+                labelText: 'Phone',
+                labelStyle: TextStyle(
+                  color: Colors.black,
+                ),
+                border: OutlineInputBorder(
+                  // gapPadding: Checkbox.width,
+                  borderSide: const BorderSide(
+                    width: 4.0,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                    color: Colors.black,
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                prefixIcon: Icon(Icons.phone),
+              ),
+              keyboardType: TextInputType.phone,
+            ),
+            SizedBox(height: 20),
+            TextField(
               controller: _passwordController,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
@@ -113,35 +144,10 @@ class _RegisterViewState extends State<RegisterView> {
               obscureText: true,
             ),
             SizedBox(height: 20),
-            TextField(
-              controller: _confirmPasswordController,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.amber)),
-                fillColor: Colors.amber,
-                hintText: 'Confirm Password',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    width: 4.0,
-                    strokeAlign: BorderSide.strokeAlignCenter,
-                    color: Colors.black,
-                    style: BorderStyle.solid,
-                  ),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                prefixIcon: Icon(Icons.lock_outline),
-              ),
-              obscureText: true,
-            ),
-            SizedBox(height: 20),
             ElevatedButton(
                 onPressed: _register,
                 child: Text('Sign Up'),
                 style: ElevatedButton.styleFrom(
-
                     backgroundColor: Colors.brown,
                     textStyle: TextStyle(color: Colors.white))),
             SizedBox(height: 10),
@@ -166,20 +172,20 @@ class _RegisterViewState extends State<RegisterView> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   textStyle:
-                  TextStyle(color: Colors.white) // Google's red color
-              ),
+                      TextStyle(color: Colors.white) // Google's red color
+                  ),
             ),
           ],
         ),
       ),
     );
   }
+
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 }
