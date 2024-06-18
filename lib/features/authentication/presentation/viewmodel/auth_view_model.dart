@@ -20,19 +20,19 @@ class AuthViewModel extends StateNotifier<AuthState> {
   final AuthUseCase authUseCase;
   final LoginViewNavigator navigator;
 
-  Future<void> uploadImage(File? file) async {
-    state = state.copyWith(isLoading: true);
-    var data = await authUseCase.uploadProfilePicture(file!);
-    data.fold(
-      (l) {
-        state = state.copyWith(isLoading: false, error: l.error);
-      },
-      (imageName) {
-        state =
-            state.copyWith(isLoading: false, error: null, imageName: imageName);
-      },
-    );
-  }
+  // Future<void> uploadImage(File? file) async {
+  //   state = state.copyWith(isLoading: true);
+  //   var data = await authUseCase.uploadProfilePicture(file!);
+  //   data.fold(
+  //     (l) {
+  //       state = state.copyWith(isLoading: false, error: l.error);
+  //     },
+  //     (imageName) {
+  //       state =
+  //           state.copyWith(isLoading: false, error: null, imageName: imageName);
+  //     },
+  //   );
+  // }
 
   Future<void> register(AuthEntity user) async {
     state = state.copyWith(isLoading: true);
