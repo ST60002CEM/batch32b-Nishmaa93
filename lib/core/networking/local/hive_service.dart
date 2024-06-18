@@ -9,8 +9,8 @@ final hiveServiceProvider = Provider((ref) => HiveService());
 // this creates a db in the local storage in our phone with name _project_name.db
 class HiveService {
   Future<void> init() async {
-    // var directory = await getApplicationDocumentsDirectory();
-    // Hive.init(directory.path);
+    var directory = await getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
     Hive.registerAdapter(
         AuthHiveModelAdapter()); // this is adapter created on the .g.dart file
   }
