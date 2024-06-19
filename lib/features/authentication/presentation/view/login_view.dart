@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/navigator/navigator.dart';
+import 'package:kaamkuro/features/authentication/domain/entity/auth_entity.dart';
 import 'package:kaamkuro/features/authentication/presentation/view/register_view.dart';
-import 'package:kaamkuro/screen/signup_screen.dart';
+import 'package:kaamkuro/features/authentication/presentation/viewmodel/auth_view_model.dart';
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
@@ -13,6 +13,10 @@ class LoginView extends ConsumerStatefulWidget {
 }
 
 class _LoginViewState extends ConsumerState<LoginView> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +70,13 @@ class _LoginViewState extends ConsumerState<LoginView> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          await ref.read(authViewModelProvider.notifier).login(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                        }
                         // Navigator.pushReplacement(
                         //   context,
                         //   MaterialPageRoute(builder: (_) => DashboardScreen()),
