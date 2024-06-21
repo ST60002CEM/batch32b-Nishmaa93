@@ -157,7 +157,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                 Text('Already have an account?'),
                 TextButton(
                   onPressed: () {
-                    // Add your navigation logic here, e.g., navigate to login screen
+                    // Add your navigation logic here, e.g., navigate to login View
                     NavigateRoute.pushRoute(const LoginView());
                   },
                   child: Text('Login'),

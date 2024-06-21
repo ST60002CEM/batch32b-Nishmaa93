@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/navigator/navigator.dart';
 import 'package:kaamkuro/features/authentication/domain/entity/auth_entity.dart';
+import 'package:kaamkuro/features/authentication/presentation/view/dashboard_view.dart';
 import 'package:kaamkuro/features/authentication/presentation/view/register_view.dart';
 import 'package:kaamkuro/features/authentication/presentation/viewmodel/auth_view_model.dart';
 
@@ -77,10 +78,10 @@ class _LoginViewState extends ConsumerState<LoginView> {
                                 _passwordController.text,
                               );
                         }
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (_) => DashboardScreen()),
-                        // );
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => DashboardView()),
+                        );
                       },
                       child:
                           Text('Login', style: TextStyle(color: Colors.white)),
@@ -99,7 +100,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       Text('Already have an account?'),
                       TextButton(
                         onPressed: () {
-                          // Add your navigation logic here, e.g., navigate to login screen
+                          // Add your navigation logic here, e.g., navigate to login View
                           NavigateRoute.pushRoute(const RegisterView());
                         },
                         child: Text('Sign Up'),
