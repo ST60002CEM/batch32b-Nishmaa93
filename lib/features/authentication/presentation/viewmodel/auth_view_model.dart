@@ -20,19 +20,19 @@ class AuthViewModel extends StateNotifier<AuthState> {
   final AuthUseCase authUseCase;
   final LoginViewNavigator navigator;
 
-  Future<void> uploadImage(File? file) async {
-    state = state.copyWith(isLoading: true);
-    var data = await authUseCase.uploadProfilePicture(file!);
-    data.fold(
-      (l) {
-        state = state.copyWith(isLoading: false, error: l.error);
-      },
-      (imageName) {
-        state =
-            state.copyWith(isLoading: false, error: null, imageName: imageName);
-      },
-    );
-  }
+  // Future<void> uploadImage(File? file) async {
+  //   state = state.copyWith(isLoading: true);
+  //   var data = await authUseCase.uploadProfilePicture(file!);
+  //   data.fold(
+  //     (l) {
+  //       state = state.copyWith(isLoading: false, error: l.error);
+  //     },
+  //     (imageName) {
+  //       state =
+  //           state.copyWith(isLoading: false, error: null, imageName: imageName);
+  //     },
+  //   );
+  // }
 
   Future<void> register(AuthEntity user) async {
     state = state.copyWith(isLoading: true);
@@ -53,11 +53,11 @@ class AuthViewModel extends StateNotifier<AuthState> {
   }
 
   Future<void> login(
-    String username,
+    String email,
     String password,
   ) async {
     state = state.copyWith(isLoading: true);
-    var data = await authUseCase.login(username, password);
+    var data = await authUseCase.login(email, password);
     data.fold(
       (failure) {
         state = state.copyWith(isLoading: false, error: failure.error);

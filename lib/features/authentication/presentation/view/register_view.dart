@@ -20,7 +20,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
 
   void _register() async {
     // Here you should add your registration logic
-    var student = AuthEntity(
+    var user = AuthEntity(
       name: _nameController.text,
       image: ref.read(authViewModelProvider).imageName ?? '',
       phone: _phoneController.text,
@@ -28,7 +28,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
       password: _passwordController.text,
     );
 
-    ref.read(authViewModelProvider.notifier).register(student);
+    ref.read(authViewModelProvider.notifier).register(user);
   }
 
   void _loginWithGoogle() {
@@ -157,7 +157,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                 Text('Already have an account?'),
                 TextButton(
                   onPressed: () {
-                    // Add your navigation logic here, e.g., navigate to login screen
+                    // Add your navigation logic here, e.g., navigate to login View
                     NavigateRoute.pushRoute(const LoginView());
                   },
                   child: Text('Login'),
