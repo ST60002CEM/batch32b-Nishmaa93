@@ -78,10 +78,10 @@ class _LoginViewState extends ConsumerState<LoginView> {
                                 _passwordController.text,
                               );
                         }
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (_) => DashboardView()),
-                        );
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(builder: (_) => DashboardView()),
+                        // );
                       },
                       child:
                           Text('Login', style: TextStyle(color: Colors.white)),
