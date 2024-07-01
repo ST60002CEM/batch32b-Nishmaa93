@@ -1,13 +1,12 @@
-
 import 'package:kaamkuro/features/job/domain/entity/job_entity.dart';
-
+ 
 class JobState {
   final List<JobEntity> lstJobs;
   final bool isLoading;
   final String? error;
   final bool hasReachedMax;
   final int page;
-
+ 
   JobState({
     required this.lstJobs,
     required this.isLoading,
@@ -15,7 +14,7 @@ class JobState {
     required this.hasReachedMax,
     required this.page,
   });
-
+ 
   factory JobState.initial() {
     return JobState(
       lstJobs: [],
@@ -25,7 +24,7 @@ class JobState {
       page: 0,
     );
   }
-
+ 
   JobState copyWith({
     List<JobEntity>? lstJobs,
     bool? isLoading,

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/features/home/presentation/view/home_view.dart';
-
+ 
 class DashboardView extends ConsumerStatefulWidget {
   const DashboardView({super.key});
-
+ 
   @override
   ConsumerState<DashboardView> createState() => _DashboardViewState();
 }
-
+ 
 class _DashboardViewState extends ConsumerState<DashboardView> {
   int _selectedIndex = 0;
-
+ 
   List<Widget> bottomScreens = [
     const HomeView(),
     const HomeView(),
     const HomeView(),
   ];
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,4 +38,3 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
     );
   }
 }
- 

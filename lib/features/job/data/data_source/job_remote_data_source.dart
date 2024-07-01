@@ -6,26 +6,26 @@ import 'package:kaamkuro/core/failure/failure.dart';
 import 'package:kaamkuro/core/networking/remote/http_service.dart';
 import 'package:kaamkuro/features/job/data/model/job_api_model.dart';
 import 'package:kaamkuro/features/job/domain/entity/job_entity.dart';
-
-
-
+ 
+ 
+ 
 final jobRemoteDataSourceProvider = Provider(
   (ref) => JobRemoteDataSource(
     dio: ref.read(httpServiceProvider),
     jobApiModel: ref.read(jobApiModelProvider),
   ),
 );
-
+ 
 class JobRemoteDataSource {
   final Dio dio;
   final JobApiModel jobApiModel;
-
+ 
   JobRemoteDataSource({
     required this.dio,
     required this.jobApiModel,
   });
-
-
+ 
+ 
   Future<Either<Failure, List<JobEntity>>> getAllJobs(int page) async {
     try {
       var response = await dio.get(ApiEndpoints.getAllJobs,queryParameters: {

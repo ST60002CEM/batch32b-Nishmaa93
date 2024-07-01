@@ -2,11 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:kaamkuro/features/job/domain/entity/job_entity.dart';
-
+ 
 final jobApiModelProvider = Provider<JobApiModel>(
   (ref) => const JobApiModel.empty(),
 );
-
+ 
 @JsonSerializable()
 class JobApiModel extends Equatable {
   @JsonKey(name: '_id')
@@ -16,7 +16,7 @@ class JobApiModel extends Equatable {
   final String? category;
   final String? description;
   final String? imageUrl;
-
+ 
   const JobApiModel({
     this.id,
     this.name,
@@ -32,7 +32,7 @@ class JobApiModel extends Equatable {
         category = '',
         description = '',
         imageUrl = '';
-
+ 
   // From Json , write full code without generator
   factory JobApiModel.fromJson(Map<String, dynamic> json) {
     return JobApiModel(
@@ -42,11 +42,11 @@ class JobApiModel extends Equatable {
       category: json['category'],
       description: json['description'],
       imageUrl: json['imageUrl'],
-
-
+ 
+ 
     );
   }
-
+ 
   // To Json , write full code without generator
   Map<String, dynamic> toJson() {
     return {
@@ -57,7 +57,7 @@ class JobApiModel extends Equatable {
       'imageUrl': imageUrl,
     };
   }
-
+ 
   // Convert API Object to Entity
   JobEntity toEntity() => JobEntity(
         id: id,
@@ -66,9 +66,9 @@ class JobApiModel extends Equatable {
         category: category,
         description: description,
         imageUrl: imageUrl,
-
+ 
       );
-
+ 
   // Convert Entity to API Object
   JobApiModel fromEntity(JobEntity entity) => JobApiModel(
         id: entity.id ?? '',
@@ -77,14 +77,15 @@ class JobApiModel extends Equatable {
         category: entity.category,
         description: entity.description,
         imageUrl: entity.imageUrl,
-
-
+ 
+ 
       );
-
+ 
   // Convert API List to Entity List
   List<JobEntity> toEntityList(List<JobApiModel> models) =>
       models.map((model) => model.toEntity()).toList();
-
+ 
   @override
   List<Object?> get props => [id, name, price, category, description, imageUrl];
 }
+ 

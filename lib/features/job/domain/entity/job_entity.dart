@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-
+ 
 class JobEntity extends Equatable {
   final String? id;
   final String? name;
@@ -7,7 +7,7 @@ class JobEntity extends Equatable {
   final String? category;
   final String? description;
   final String? imageUrl;
-
+ 
   const JobEntity({
     this.id,
     this.name,
@@ -16,7 +16,7 @@ class JobEntity extends Equatable {
     this.description,
     this.imageUrl,
   });
-
+ 
   @override
   List<Object?> get props =>
       [id, name, price, category, description, imageUrl];
