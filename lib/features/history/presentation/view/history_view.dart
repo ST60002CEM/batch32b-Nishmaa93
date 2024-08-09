@@ -25,8 +25,12 @@ class _JobHistoryViewState extends ConsumerState<JobHistoryView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Job History'),
-        backgroundColor: Colors.brown,
+        title: const Text(
+          'Job History',
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        backgroundColor: const Color(0xFFF3F2F2),
         automaticallyImplyLeading: false,
       ),
       body: NotificationListener<ScrollNotification>(

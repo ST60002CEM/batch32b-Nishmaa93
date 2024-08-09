@@ -29,8 +29,12 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Home'),
-          backgroundColor: Colors.brown,
+          title: const Text(
+            'Home',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+          ),
+          backgroundColor: const Color(0xFFF3F2F2),
           automaticallyImplyLeading: false),
       body: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
@@ -85,7 +89,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   ),
                   const SizedBox(height: 10),
                   SizedBox(
-                    height: 250,
+                    height: 220,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       controller: _horizontalScrollController1,
@@ -95,6 +99,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         return Padding(
                           padding: const EdgeInsets.only(right: 10.0),
                           child: Card(
+                            color: Colors.grey.shade200,
                             elevation: 5,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -154,10 +159,10 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     ),
                                   ),
                                   const SizedBox(height: 5),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0),
-                                    child: const Text(
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Text(
                                       "Job Description",
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
@@ -184,7 +189,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   ),
                   const SizedBox(height: 10),
                   SizedBox(
-                    height: 250,
+                    height: 220,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       controller: _horizontalScrollController2,
@@ -194,6 +199,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         return Padding(
                           padding: const EdgeInsets.only(right: 10.0),
                           child: Card(
+                            color: Colors.grey.shade200,
                             elevation: 5,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),

@@ -15,8 +15,12 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
     final userState = ref.watch(userViewModelProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
-        backgroundColor: Colors.brown,
+        title: const Text('Profile',
+            style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 24)),
+        backgroundColor: const Color(0xFFF3F2F2),
         automaticallyImplyLeading: false,
       ),
       body: userState.isLoading
