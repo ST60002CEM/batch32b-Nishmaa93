@@ -112,8 +112,12 @@ class _SearchViewState extends ConsumerState<SearchView> {
                                     ApiEndpoints.jobImageUrl + job.imageUrl!,
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, error, stackTrace) {
-                                      return const Icon(Icons.person,
-                                          size: 40, color: Colors.grey);
+                                      return Image.asset(
+                                        'assets/images/kaam.jpeg', // Replace with your asset image path
+                                        height: 200,
+                                        width: double.infinity,
+                                        fit: BoxFit.cover,
+                                      );
                                     },
                                     loadingBuilder:
                                         (context, child, loadingProgress) {

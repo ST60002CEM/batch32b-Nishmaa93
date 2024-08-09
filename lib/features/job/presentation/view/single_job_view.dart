@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/constants/api_endpoint.dart';
+import 'package:kaamkuro/core/common/my_snackbar.dart';
 import 'package:kaamkuro/features/job/domain/entity/job_entity.dart';
 
 class JobDetailView extends ConsumerStatefulWidget {
@@ -128,6 +129,7 @@ class _JobDetailViewState extends ConsumerState<JobDetailView> {
                 child: ElevatedButton(
                   onPressed: () {
                     // Handle apply functionality
+                    showMySnackBar(message: 'The employee has been hired.');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.brown,
