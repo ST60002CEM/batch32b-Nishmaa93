@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/features/profile/presentation/view/change_password_view.dart';
+import 'package:kaamkuro/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:kaamkuro/features/profile/presentation/viewmodel/profile_view_model.dart';
 
 class ProfileView extends ConsumerStatefulWidget {
@@ -148,11 +149,11 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                         child: ElevatedButton(
                           onPressed: () {
                             // Navigate to edit profile screen
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => EditProfileView()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditProfileView()),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.brown,
