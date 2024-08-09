@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/core/common/my_snackbar.dart';
@@ -47,7 +45,8 @@ class AuthViewModel extends StateNotifier<AuthState> {
       },
       (success) {
         state = state.copyWith(isLoading: false, error: null);
-        showMySnackBar(message: "Successfully registered");
+        // showMySnackBar(message: "Successfully registered");
+        openDashboardView();
       },
     );
   }

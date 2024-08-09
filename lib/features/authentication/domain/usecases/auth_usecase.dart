@@ -23,8 +23,8 @@ class AuthUseCase {
     return await _authRepository.register(user);
   }
  
-  Future<Either<Failure, bool>> login(String email, String password) async {
-    return await _authRepository.login(email, password);
+  Future<Either<Failure, bool>> login(String? email, String? password) async {
+    return await _authRepository.login(email?? "", password?? "");
   }
 }
  
