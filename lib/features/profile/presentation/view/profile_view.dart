@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:kaamkuro/core/common/my_snackbar.dart';
 import 'package:kaamkuro/features/profile/presentation/view/change_password_view.dart';
 import 'package:kaamkuro/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:kaamkuro/features/profile/presentation/viewmodel/profile_view_model.dart';
@@ -12,16 +16,54 @@ class ProfileView extends ConsumerStatefulWidget {
 }
 
 class _ProfileViewState extends ConsumerState<ProfileView> {
+  File? _image;
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+      _uploadProfilePicture(_image!);
+    }
+  }
+
+  Future<void> _uploadProfilePicture(File image) async {
+    try {
+      // Mock upload process (replace with your upload logic)
+      await Future.delayed(const Duration(seconds: 2));
+
+      // Assuming the upload was successful and you have the new image URL:
+      final newImageUrl = "https://your-server.com/path/to/new-image.jpg";
+
+      // Update the user profile picture URL in the view model
+      // ref
+      //     .read(userViewModelProvider.notifier)
+      //     .updateProfilePicture(newImageUrl);
+
+      // Optionally, show a success message
+      showMySnackBar(message: 'Profile picture updated successfully!');
+    } catch (e) {
+      showMySnackBar(
+          message: 'Profile picture updated successfully!', color: Colors.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final userState = ref.watch(userViewModelProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile',
-            style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 24)),
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
         backgroundColor: const Color(0xFFF3F2F2),
         automaticallyImplyLeading: false,
       ),
@@ -29,7 +71,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
           ? const Center(child: CircularProgressIndicator())
           : userState.user == null
               ? const Center(child: Text('Failed to load user data'))
-              : Padding(
+              : SingleChildScrollView(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -57,22 +99,22 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                               children: [
                                 CircleAvatar(
                                   radius: 60,
-                                  backgroundImage: userState
-                                              .user?.profilePictureUrl !=
-                                          null
-                                      ? NetworkImage(
-                                          userState.user!.profilePictureUrl!)
-                                      : const AssetImage(
-                                              'assets/images/cat.jpg')
-                                          as ImageProvider,
+                                  backgroundImage: _image != null
+                                      ? FileImage(_image!)
+                                      : userState.user?.profilePictureUrl !=
+                                              null
+                                          ? NetworkImage(userState
+                                              .user!.profilePictureUrl!)
+                                          : const AssetImage(
+                                                  'assets/images/cat.jpg')
+                                              as ImageProvider,
                                   backgroundColor: Colors.grey.shade200,
                                 ),
                                 Positioned(
                                   bottom: 1,
                                   right: 1,
                                   child: Container(
-                                    padding: const EdgeInsets.all(
-                                        1), // Reduced padding
+                                    padding: const EdgeInsets.all(1),
                                     decoration: const BoxDecoration(
                                       color: Colors.brown,
                                       shape: BoxShape.circle,
@@ -81,11 +123,9 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                                       icon: const Icon(
                                         Icons.camera_alt,
                                         color: Colors.white,
-                                        size: 20, // Reduced icon size
+                                        size: 20,
                                       ),
-                                      onPressed: () {
-                                        // Handle profile picture change
-                                      },
+                                      onPressed: _pickImage,
                                     ),
                                   ),
                                 ),
