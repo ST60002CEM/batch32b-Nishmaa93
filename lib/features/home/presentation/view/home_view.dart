@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/constants/api_endpoint.dart';
 import 'package:kaamkuro/features/job/presentation/view/single_job_view.dart';
 import 'package:kaamkuro/features/job/presentation/viewmodel/job_viewmodel.dart';
+import 'package:kaamkuro/features/search/presentation/view/search_view.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -71,11 +72,13 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         filled: true,
                         fillColor: Colors.grey[200],
                       ),
-                      onChanged: (query) {
-                        // Trigger a search/filtering function when the user types
-                        // ref
-                        //     .read(jobViewModelProvider.notifier)
-                        //     .filterJobs(query);
+                      onSubmitted: (query) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SearchView(),
+                          ),
+                        );
                       },
                     ),
                   ),
