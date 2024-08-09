@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/navigator/navigator.dart';
 import 'package:kaamkuro/features/authentication/presentation/view/login_view.dart';
+import 'package:kaamkuro/features/history/presentation/view/history_view.dart';
 import 'package:kaamkuro/features/home/presentation/view/home_view.dart';
 import 'package:kaamkuro/utils/sensors/double_shake_sensor.dart';
 
@@ -17,7 +18,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
 
   List<Widget> bottomScreens = [
     const HomeView(),
-    const HomeView(),
+    const JobHistoryView(),
     const HomeView(),
   ];
 
@@ -67,8 +68,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.library_add), label: 'Library'),
+          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
