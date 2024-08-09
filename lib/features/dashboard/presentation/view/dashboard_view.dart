@@ -4,6 +4,7 @@ import 'package:kaamkuro/app/navigator/navigator.dart';
 import 'package:kaamkuro/features/authentication/presentation/view/login_view.dart';
 import 'package:kaamkuro/features/history/presentation/view/history_view.dart';
 import 'package:kaamkuro/features/home/presentation/view/home_view.dart';
+import 'package:kaamkuro/features/profile/presentation/view/profile_view.dart';
 import 'package:kaamkuro/utils/sensors/double_shake_sensor.dart';
 
 class DashboardView extends ConsumerStatefulWidget {
@@ -19,7 +20,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
   List<Widget> bottomScreens = [
     const HomeView(),
     const JobHistoryView(),
-    const HomeView(),
+    const ProfileView(),
   ];
 
   late DoubleShakeDetectorService _doubleShakeDetectorService;
