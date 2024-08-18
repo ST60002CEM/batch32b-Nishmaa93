@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/constants/api_endpoint.dart';
+import 'package:kaamkuro/features/employee/presentation/view/single_employee_view.dart';
+import 'package:kaamkuro/features/employee/presentation/view_model/employee_view_model.dart';
 import 'package:kaamkuro/features/job/presentation/view/single_job_view.dart';
 import 'package:kaamkuro/features/job/presentation/viewmodel/job_viewmodel.dart';
 import 'package:kaamkuro/features/search/presentation/view/search_view.dart';
@@ -28,6 +30,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(jobViewModelProvider);
+    final employeeState = ref.watch(employeeViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -178,14 +181,15 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                         ),
                                       ),
                                       const SizedBox(height: 5),
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
                                             horizontal: 8.0),
                                         child: Text(
-                                          "Job Description",
+                                          job.description!,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(color: Colors.grey),
+                                          style: const TextStyle(
+                                              color: Colors.grey),
                                         ),
                                       ),
                                     ],
@@ -199,7 +203,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   const SizedBox(height: 20), // Space between the two lists
                   // Second list heading
                   const Text(
-                    "New Jobs",
+                    "Top Employees",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -212,15 +216,16 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       controller: _horizontalScrollController2,
-                      itemCount: state.lstJobs.length,
+                      itemCount: employeeState.lstEmployees.length,
                       itemBuilder: (context, index) {
-                        final job = state.lstJobs[index];
+                        final employee = employeeState.lstEmployees[index];
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => JobDetailView(job: job),
+                                builder: (context) =>
+                                    EmployeeDetailView(employee: employee),
                               ),
                             );
                           },
@@ -237,8 +242,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    job.imageUrl != null &&
-                                            job.imageUrl!.isNotEmpty
+                                    employee.imageUrl != null &&
+                                            employee.imageUrl!.isNotEmpty
                                         ? Container(
                                             width: double.infinity,
                                             height: 120,
@@ -250,8 +255,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                               child: Image.network(
-                                                ApiEndpoints.jobImageUrl +
-                                                    job.imageUrl!,
+                                                ApiEndpoints.employeeImageUrl +
+                                                    employee.imageUrl!,
                                                 fit: BoxFit.cover,
                                                 errorBuilder: (context, error,
                                                     stackTrace) {
@@ -281,7 +286,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0),
                                       child: Text(
-                                        job.name!,
+                                        employee.name!,
                                         style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -291,11 +296,11 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                       ),
                                     ),
                                     const SizedBox(height: 5),
-                                    const Padding(
+                                    Padding(
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 8.0),
                                       child: Text(
-                                        "Job Description",
+                                        employee.address ?? '',
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(color: Colors.grey),
