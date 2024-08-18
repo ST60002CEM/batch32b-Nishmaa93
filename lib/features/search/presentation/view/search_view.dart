@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/constants/api_endpoint.dart';
 import 'package:kaamkuro/features/job/presentation/view/single_job_view.dart';
-import 'package:kaamkuro/features/job/presentation/viewmodel/job_viewmodel.dart';
+import 'package:kaamkuro/features/search/presentation/viewmodel/search_view_model.dart';
 
 class SearchView extends ConsumerStatefulWidget {
-  const SearchView({super.key});
+  final String searchKey;
+  SearchView({super.key, required this.searchKey});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SearchViewState();
@@ -22,7 +23,7 @@ class _SearchViewState extends ConsumerState<SearchView> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(jobViewModelProvider);
+    final state = ref.watch(searchViewModelProvider(widget.searchKey));
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +39,9 @@ class _SearchViewState extends ConsumerState<SearchView> {
         onNotification: (notification) {
           if (notification is ScrollEndNotification &&
               _scrollController.position.extentAfter == 0) {
-            ref.read(jobViewModelProvider.notifier).getAllJobs();
+            ref
+                .read(searchViewModelProvider(widget.searchKey).notifier)
+                .searchAllJobs(widget.searchKey);
           }
           return true;
         },
@@ -46,7 +49,9 @@ class _SearchViewState extends ConsumerState<SearchView> {
           color: Colors.brown,
           backgroundColor: Colors.white,
           onRefresh: () async {
-            ref.read(jobViewModelProvider.notifier).resetState();
+            ref
+                .read(searchViewModelProvider(widget.searchKey).notifier)
+                .resetState();
           },
           child: state.lstJobs.isEmpty
               ? const Center(

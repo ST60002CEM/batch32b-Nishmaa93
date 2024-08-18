@@ -20,4 +20,10 @@ class JobRemoteRepository implements IJobRepository {
   Future<Either<Failure, List<JobEntity>>> getAllJobs(int page) {
     return jobRemoteDataSource.getAllJobs(page);
   }
+
+  @override
+  Future<Either<Failure, List<JobEntity>>> searchAllJobs(
+      int page, String keyword) {
+    return jobRemoteDataSource.searchAllJobs(page, keyword);
+  }
 }

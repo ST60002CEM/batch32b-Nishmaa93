@@ -79,7 +79,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SearchView(),
+                            builder: (context) => SearchView(
+                              searchKey: _searchController.text,
+                            ),
                           ),
                         );
                       },
