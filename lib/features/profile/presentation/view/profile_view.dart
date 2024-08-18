@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kaamkuro/app/constants/api_endpoint.dart';
 import 'package:kaamkuro/core/common/my_snackbar.dart';
 import 'package:kaamkuro/features/profile/presentation/view/change_password_view.dart';
 import 'package:kaamkuro/features/profile/presentation/view/edit_profile_view.dart';
-import 'package:kaamkuro/features/profile/presentation/viewmodel/profile_view_model.dart';
+import 'package:kaamkuro/features/profile/presentation/viewmodel/user_view_model.dart';
+// import 'package:kaamkuro/features/profile/presentation/viewmodel/profile_view_model.dart';
 
 class ProfileView extends ConsumerStatefulWidget {
   const ProfileView({super.key});
@@ -69,7 +71,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
       ),
       body: userState.isLoading
           ? const Center(child: CircularProgressIndicator())
-          : userState.user == null
+          : userState.userEntity == null
               ? const Center(child: Text('Failed to load user data'))
               : SingleChildScrollView(
                   padding: const EdgeInsets.all(16.0),
@@ -101,10 +103,10 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                                   radius: 60,
                                   backgroundImage: _image != null
                                       ? FileImage(_image!)
-                                      : userState.user?.profilePictureUrl !=
-                                              null
-                                          ? NetworkImage(userState
-                                              .user!.profilePictureUrl!)
+                                      : userState.userEntity?.image != null
+                                          ? NetworkImage(
+                                              ApiEndpoints.userImageUrl +
+                                                  userState.userEntity!.image!)
                                           : const AssetImage(
                                                   'assets/images/cat.jpg')
                                               as ImageProvider,
@@ -133,7 +135,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              userState.user?.name ?? 'User Name',
+                              userState.userEntity?.name ?? 'User Name',
                               style: const TextStyle(
                                 fontSize: 26,
                                 fontWeight: FontWeight.bold,
@@ -142,7 +144,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              userState.user?.email ?? 'user@example.com',
+                              userState.userEntity?.email ?? 'user@example.com',
                               style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.brown,
@@ -165,7 +167,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'Bio',
+                                'Phone Number',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -174,8 +176,8 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                userState.user?.bio ??
-                                    'This is a short bio about the user.',
+                                '+977-${userState.userEntity?.phone}' ??
+                                    '9862123321',
                                 style: const TextStyle(
                                     fontSize: 16, color: Colors.brown),
                               ),

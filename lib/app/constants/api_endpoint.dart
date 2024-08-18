@@ -40,6 +40,13 @@ class ApiEndpoints {
   // ====================== Employee Routes ======================
   static const String getAllEmployees = "employee/get_all_employees";
 
+  // ====================== User Routes ======================
+  static const String editUser = "user/updateprofile";
+  static const String editProfilePicture = "user/updateprofilepicture";
+  static const String getUser = "user/getprofile";
+  static const String changePassword = "user/update/password";
+  static const String userImageUrl = "http://192.168.1.81:5500/users/";
+
   // ====================== Course Routes ======================
   static const String createCourse = "course/createCourse";
   static const String deleteCourse = "course/";

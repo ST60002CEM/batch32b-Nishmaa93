@@ -1,21 +1,23 @@
-import 'dart:io';
- 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kaamkuro/app/constants/api_endpoint.dart';
 import 'package:kaamkuro/core/failure/failure.dart';
 import 'package:kaamkuro/core/networking/remote/http_service.dart';
+import 'package:kaamkuro/core/shared_prefs/user_shared_prefs.dart';
 import 'package:kaamkuro/features/authentication/domain/entity/auth_entity.dart';
- 
+
 final authRemoteDataSourceProvider = Provider(
-  (ref) => AuthRemoteDataSource(dio: ref.read(httpServiceProvider)),
+  (ref) => AuthRemoteDataSource(
+      dio: ref.read(httpServiceProvider),
+      userSharedPrefs: ref.read(userSharedPrefsProvider)),
 );
- 
+
 class AuthRemoteDataSource {
   final Dio dio;
-  AuthRemoteDataSource({required this.dio});
- 
+  final UserSharedPrefs userSharedPrefs;
+  AuthRemoteDataSource({required this.dio, required this.userSharedPrefs});
+
   Future<Either<Failure, bool>> login(
     String email,
     String password,
@@ -30,9 +32,9 @@ class AuthRemoteDataSource {
       );
       if (response.statusCode == 200) {
         // retrieve token
-        // String token = response.data["token"];
+        String token = response.data["token"];
         print(response.data);
-        // await userSharedPrefs.setUserToken(token);
+        await userSharedPrefs.setUserToken(token);
         return const Right(true);
       } else {
         return Left(
@@ -51,7 +53,7 @@ class AuthRemoteDataSource {
       );
     }
   }
- 
+
   Future<Either<Failure, bool>> register(AuthEntity user) async {
     try {
       Response response = await dio.post(

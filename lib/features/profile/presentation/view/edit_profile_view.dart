@@ -92,6 +92,9 @@ class _EditProfileViewState extends ConsumerState<EditProfileView> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Handle apply functionality
+
+                    // final user = UserEntity(name: _name, phone: _phoneNumber);
+                    // ref.read(userViewModelProvider.notifier).editUser(user);
                     showMySnackBar(message: 'Profile has been updated.');
                   }
                 },
